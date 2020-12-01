@@ -1,14 +1,27 @@
 'use strict'
 
+//////////////////////////////
+// ========== Selectors ========== //
+
+// Header 
 const header = document.querySelector('.header');
 
-//////////////////////////////
-// Modal window 
+// Buttons 
+const btnScrollTo = document.querySelector('.btn--scroll-to');
 
+// Sections 
+const section1 = document.querySelector('#section--1');
+
+// Modal window 
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+
+
+//////////////////////////////
+// Modal window 
 
 const openModal = () => {
     modal.classList.remove('hidden');
@@ -44,4 +57,18 @@ header.append(message);
 // Close Cookie message 
 document.querySelector('.btn--close-cookie').addEventListener('click', () => {
     message.remove();
+})
+
+// Styles
+message.style.backgroundColor = '#37383d'
+message.style.width = '103%'
+message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px'
+
+
+
+//////////////////////////
+// Smoothe Scrolling 
+
+btnScrollTo.addEventListener('click', () => {
+    section1.scrollIntoView({ behavior: 'smooth' })
 })
