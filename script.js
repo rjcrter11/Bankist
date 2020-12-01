@@ -3,6 +3,9 @@
 //////////////////////////////
 // ========== Selectors ========== //
 
+// Navbar 
+const navLinks = document.querySelector('.nav__links');
+
 // Header 
 const header = document.querySelector('.header');
 
@@ -41,10 +44,10 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
 
     document.addEventListener('keydown', (e) => {
         if (e.key == 'Escape' && !modal.classList.contains('hidden')) {
-            closeModal()
+            closeModal();
         }
-    })
-}
+    });
+};
 
 //////////////////////////
 // Cookie message 
@@ -60,15 +63,26 @@ document.querySelector('.btn--close-cookie').addEventListener('click', () => {
 })
 
 // Styles
-message.style.backgroundColor = '#37383d'
-message.style.width = '103%'
-message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px'
+message.style.backgroundColor = '#37383d';
+message.style.width = '103%';
+message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
 
 
 //////////////////////////
-// Smoothe Scrolling 
+// Button Scrolling 
 
 btnScrollTo.addEventListener('click', () => {
     section1.scrollIntoView({ behavior: 'smooth' })
-})
+});
+
+//////////////////////////////
+// Page Navigation
+
+navLinks.addEventListener('click', e => {
+    e.preventDefault()
+    if (e.target.classList.contains('nav__link')) {
+        const id = e.target.getAttribute('href');
+        document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
+    };
+});
