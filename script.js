@@ -62,6 +62,8 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
 
 const message = document.createElement('div');
 message.classList.add('cookie-message');
+message.classList.add('sticky')
+console.log(message);
 message.innerHTML = 'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button';
 header.append(message);
 
@@ -132,3 +134,12 @@ const handleHover = function (e) {
 navBar.addEventListener('mouseover', handleHover.bind(0.5));
 
 navBar.addEventListener('mouseout', handleHover.bind(1));
+
+//////////////////////////////
+// Sticky Nav 
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+window.addEventListener('scroll', () => {
+    if (window.scrollY > initialCoords.top) navBar.classList.add('sticky');
+    else navBar.classList.remove('sticky')
+})
