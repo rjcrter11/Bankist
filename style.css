@@ -653,3 +653,7 @@ h4 {
 .cookie-message button {
   padding: 1.25rem 5rem;
 }
+.cookie-message.sticky {
+  position: fixed;
+  bottom: 0;
+}
