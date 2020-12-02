@@ -63,7 +63,6 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
 const message = document.createElement('div');
 message.classList.add('cookie-message');
 message.classList.add('sticky')
-console.log(message);
 message.innerHTML = 'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button';
 header.append(message);
 
@@ -137,9 +136,18 @@ navBar.addEventListener('mouseout', handleHover.bind(1));
 
 //////////////////////////////
 // Sticky Nav 
-const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
-window.addEventListener('scroll', () => {
-    if (window.scrollY > initialCoords.top) navBar.classList.add('sticky');
-    else navBar.classList.remove('sticky')
-})
+const navHeight = navBar.getBoundingClientRect().height;
+
+const stickyNav = (entries) => {
+    const [entry] = entries;
+
+    if (!entry.isIntersecting) navBar.classList.add('sticky');
+    else navBar.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
+});
+headerObserver.observe(header);
