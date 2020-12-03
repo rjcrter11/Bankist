@@ -221,11 +221,8 @@ goToSlide(0);
 //
 // Next Slide 
 const nextSlide = () => {
-    if (curSlide === maxSlide - 1) {
-        curSlide = 0;
-    } else {
-        curSlide++;
-    };
+    if (curSlide === maxSlide - 1) curSlide = 0;
+    else curSlide++;
     goToSlide(curSlide);
 }
 
