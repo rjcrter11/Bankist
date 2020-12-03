@@ -5,9 +5,11 @@
 
 // Buttons 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
 
 // Images 
-const imgTargets = document.querySelectorAll('img[data-src]')
+const imgTargets = document.querySelectorAll('img[data-src]');
 
 // Navbar 
 const navLinks = document.querySelector('.nav__links');
@@ -25,7 +27,12 @@ const tabsContent = document.querySelectorAll('.operations__content');
 
 // Sections 
 const section1 = document.querySelector('#section--1');
-const allSections = document.querySelectorAll('.section')
+const allSections = document.querySelectorAll('.section');
+
+// Slider 
+const slides = document.querySelectorAll('.slide');
+const slider = document.querySelector('.slide')
+
 
 // Modal window 
 const modal = document.querySelector('.modal');
@@ -197,3 +204,36 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+//////////////////////////////
+// Slider Component 
+
+let curSlide = 0;
+const maxSlide = slides.length;
+
+const goToSlide = (slide) => {
+    slides.forEach((s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`));
+};
+
+goToSlide(0);
+
+
+//
+// Next Slide 
+const nextSlide = () => {
+    if (curSlide === maxSlide - 1) {
+        curSlide = 0;
+    } else {
+        curSlide++;
+    };
+    goToSlide(curSlide);
+}
+
+const prevSlide = () => {
+    if (curSlide === 0) curSlide = maxSlide - 1;
+    else curSlide--;
+    goToSlide(curSlide);
+}
+
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', prevSlide);
