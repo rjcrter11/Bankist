@@ -32,7 +32,7 @@ const allSections = document.querySelectorAll('.section');
 // Slider 
 const slides = document.querySelectorAll('.slide');
 const slider = document.querySelector('.slide');
-const dotContainer = document.querySelector('.dots')
+const dotContainer = document.querySelector('.dots');
 
 
 // Modal window 
@@ -65,7 +65,7 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
     document.addEventListener('keydown', (e) => {
         if (e.key == 'Escape' && !modal.classList.contains('hidden')) {
             closeModal();
-        }
+        };
     });
 };
 
@@ -74,14 +74,14 @@ for (let i = 0; i < btnsOpenModal.length; i++) {
 
 const message = document.createElement('div');
 message.classList.add('cookie-message');
-message.classList.add('sticky')
+message.classList.add('sticky');
 message.innerHTML = 'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button';
 header.append(message);
 
 // Close Cookie message 
 document.querySelector('.btn--close-cookie').addEventListener('click', () => {
     message.remove();
-})
+});
 
 // Styles
 message.style.backgroundColor = '#37383d';
@@ -94,7 +94,7 @@ message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) +
 // Button Scrolling 
 
 btnScrollTo.addEventListener('click', () => {
-    section1.scrollIntoView({ behavior: 'smooth' })
+    section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 //////////////////////////////
@@ -104,7 +104,7 @@ navLinks.addEventListener('click', e => {
     e.preventDefault();
     if (e.target.classList.contains('nav__link')) {
         const id = e.target.getAttribute('href');
-        document.querySelector(id).scrollIntoView({ behavior: 'smooth' })
+        document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
     };
 });
 
@@ -209,8 +209,6 @@ imgTargets.forEach(img => imgObserver.observe(img));
 //////////////////////////////
 // Slider Component 
 const sliderInit = function () {
-
-
     let curSlide = 0;
     const maxSlide = slides.length;
 
@@ -231,7 +229,6 @@ const sliderInit = function () {
         slides.forEach((s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`));
     };
 
-
     // Next Slide 
     const nextSlide = () => {
         if (curSlide === maxSlide - 1) curSlide = 0;
@@ -251,9 +248,9 @@ const sliderInit = function () {
         goToSlide(0);
         createDots();
         activateDot(0);
-    }
+    };
 
-    init()
+    init();
 
     // Event handlers 
     btnRight.addEventListener('click', nextSlide);
@@ -267,8 +264,8 @@ const sliderInit = function () {
     dotContainer.addEventListener('click', e => {
         if (e.target.classList.contains('dots__dot')) {
             const { slide } = e.target.dataset;
-            goToSlide(slide)
-            activateDot(slide)
+            goToSlide(slide);
+            activateDot(slide);
         };
     });
 };
